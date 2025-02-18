@@ -10,12 +10,11 @@
       try {
         const response = await fetch('servicos.txt');
         if (!response.ok) {
-          throw new Error('Erro ao buscar o arquivo de texto.');
+          throw new Error('ERRO ao captar a informação do ficheiro de texto!');
         }
-        const texto = await response.text();
-
+        const informacao = await response.text();
         //Inserir informação do txt no html
-        document.body.innerHTML = `<pre>${texto}</pre>`;
+        document.body.innerHTML = `<pre>${informacao}</pre>`;
       } catch (error) {
         document.body.innerHTML = `<p style="color: red;">${error.message}</p>`;
       }

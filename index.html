@@ -1,2 +1,27 @@
-<h1>Estou a conseguir utilizar o gitHub pages!</h1>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Upload informação para html</title>
+</head>
+<body>
+  <script>
+    async function uploadInfo() {
+      try {
+        const response = await fetch('servicos.txt');
+        if (!response.ok) {
+          throw new Error('Erro ao buscar o arquivo de texto.');
+        }
+        const texto = await response.text();
 
+        //Inserir informação do txt no html
+        document.body.innerHTML = `<pre>${texto}</pre>`;
+      } catch (error) {
+        document.body.innerHTML = `<p style="color: red;">${error.message}</p>`;
+      }
+    }
+
+    uploadInfo();
+  </script>
+</body>
+</html>

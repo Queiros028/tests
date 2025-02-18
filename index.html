@@ -12,13 +12,16 @@
     if (!response.ok) {
       throw new Error('ERRO ao captar a informação do ficheiro de texto!');
     }
-    const textDecoder = new TextDecoder("utf-8");
-    const informacao = textDecoder.decode(await response.arrayBuffer());
-    document.body.innerHTML = `<pre>${informacao}</pre>`;
+    const blob = await response.blob();
+    const text = await blob.text(); // Garante que a leitura seja feita corretamente
+    document.body.innerHTML = `<pre>${text}</pre>`;
   } catch (error) {
     document.body.innerHTML = `<p style="color: red;">${error.message}</p>`;
   }
 }
+
+uploadInfo();
+
 
 uploadInfo();
 
